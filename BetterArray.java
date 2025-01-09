@@ -11,7 +11,7 @@ public class BetterArray {
     }
 
     public int size() {
-        return size;
+        return this.used;
     }
 
     public boolean add(int item) {
@@ -20,16 +20,19 @@ public class BetterArray {
         } else if (this.used >= this.size) {
             addSpots(this.size);
         }
-
         array[used] = item;
         this.used++;
         return true;
     }
 
     public void add(int index, int item) {
-        addSpots(1);
+        if (this.used >= this.size) {
+            addSpots(this.size);
+        } else {
+            addSpots(1);
+        }
 
-        if (index >= this.used) {
+        if (index == this.used) {
             array[index] = item;
         } else {
             int previousItem = 0;
@@ -53,18 +56,17 @@ public class BetterArray {
     }
 
     public int remove(int index) {
+        int currentItem = array[index];
         if (index == this.used) {
             array[index] = 0;
             this.used--;
         } else {
-            // int previousItem = 0;
-            // int newItem = 0;
-            // for (int i = index + 1; i < array.length - 1; i++) {
-            //     previousItem = array[i];
-            //     array[i] = newItem;
-            //     newItem = previousItem;
-            // }
+            for (int i = index; i < array.length - 1; i++) {
+                array[i] = array[i+1];
+            }
         }
+
+        return currentItem;
     }
 
     private void addSpots(int amount) {
@@ -72,12 +74,7 @@ public class BetterArray {
         for (int i = 0; i < this.used; i++) {
             result[i] = array[i];
         }
-    }
-
-    private void removeSpots(int amount) {
-        int[] result = new int[array.length - amount];
-        for (int i = 0; i < this.used; i++) {
-            result[i] = array[i];
-        }
+        this.size += amount;
+        array = result;
     }
 }

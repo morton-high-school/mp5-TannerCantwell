@@ -78,6 +78,7 @@ public class BetterArrayAutograder{
     int[] b3 = {20, 42, 0, 0, 0, 0};
     boolean t3 = arrayEquals(a2.array, b3);
 
+    System.out.println(a1.array.length);
     boolean t4 = a1.size() == 5;
     boolean t5 = a2.size() == 2;
 

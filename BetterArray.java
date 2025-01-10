@@ -18,6 +18,7 @@ public class BetterArray {
         } else if (this.used >= array.length) {
             addSpots(array.length);
         }
+        
         array[used] = item;
         this.used++;
         return true;
@@ -33,12 +34,14 @@ public class BetterArray {
         } else {
             int previousItem = 0;
             int newItem = item;
-            for (int i = index; i < array.length - 1; i++) {
+            for (int i = index; i < array.length; i++) {
                 previousItem = array[i];
                 array[i] = newItem;
                 newItem = previousItem;
             }
         }
+
+        this.used++;
     }
 
     public int get(int index) {
@@ -55,12 +58,12 @@ public class BetterArray {
         int currentItem = array[index];
         if (index == this.used) {
             array[index] = 0;
-            this.used--;
         } else {
             for (int i = index; i < array.length - 1; i++) {
                 array[i] = array[i+1];
             }
         }
+        this.used--;
 
         return currentItem;
     }

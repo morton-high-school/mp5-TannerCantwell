@@ -1,13 +1,11 @@
 public class BetterArray {
     public int[] array = new int[0];
-    private int size = 0;
     private int used = 0;
 
     BetterArray() {}
 
     BetterArray(int size) {
         addSpots(size);
-        this.size = size;
     }
 
     public int size() {
@@ -15,10 +13,10 @@ public class BetterArray {
     }
 
     public boolean add(int item) {
-        if (this.size == 0) {
+        if (array.length == 0) {
             addSpots(1);
-        } else if (this.used >= this.size) {
-            addSpots(this.size);
+        } else if (this.used >= array.length) {
+            addSpots(array.length);
         }
         array[used] = item;
         this.used++;
@@ -26,10 +24,8 @@ public class BetterArray {
     }
 
     public void add(int index, int item) {
-        if (this.used >= this.size) {
-            addSpots(this.size);
-        } else {
-            addSpots(1);
+        if (this.used >= array.length) {
+            addSpots(array.length);
         }
 
         if (index == this.used) {
@@ -74,7 +70,6 @@ public class BetterArray {
         for (int i = 0; i < this.used; i++) {
             result[i] = array[i];
         }
-        this.size += amount;
         array = result;
     }
 }
